@@ -11,6 +11,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+
+import com.example.demo.filter.PathAndJwtCheckFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -85,7 +88,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.tokenValiditySeconds(30)
 				.key("mykey");
 			
-			
+			// 加入過濾器 2222 3:27ˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋˋ
+			http.addFilterBefore(new PathAndJwtCheckFilter(), BasicAuthenticationFilter.class);
 		}
 		// 配置網路安全 2222 00:32
 		@Override
